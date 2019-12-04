@@ -1,7 +1,7 @@
 {
-  "name": "Expense.pw",
-  "start_url": "https://expense.pw",
-  "description": "An expense tracker",
+  "name": "Recipe Book",
+  "start_url": "https://recipe-book.page",
+  "description": "A recipe book",
   "icons": [{
     "src": "https://helloblockstack.com/icon-192x192.png",
     "sizes": "192x192",
