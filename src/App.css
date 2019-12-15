@@ -222,3 +222,7 @@ body {
 #deleteExpenses {
   justify-content: center;
 }
+
+#recipeBtn {
+  display: none;
+}
