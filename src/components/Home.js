@@ -78,7 +78,7 @@ export default class Home extends Component {
               </p>
             </div>
             {!profile && <div>
-              <p className='landing-slogan-text'>Play Tic Tac Toe and get recipes. Backed by <a href="https://blockstack.org" target="_blank">Blockstack</a> decentralized storage.</p>
+              <p className='landing-slogan-text'>Play Tic Tac Toe and get a recipe. Backed by <a href="https://blockstack.org" target="_blank">Blockstack</a> decentralized storage.</p>
             </div>}
             <div>
               {profile && <FitstackProfile profile={profile} userSession={userSession}/>}

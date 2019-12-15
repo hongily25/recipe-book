@@ -197,8 +197,15 @@ class Game extends React.Component {
           classes: x ? 'revert game' : 'game',
       });
   };
+
+  showRecipe() {
+    document.getElementById('recipe').innerHTML = 'Some recipe';
+  }
+
   render() {
       return (
+          <div id="recipe"></div>
+          <div class="btn" onClick={this.showRecipe}></div>
           <div className={this.state.classes}>
               <div className="game-board">
                   <Board onToggleX={this.onToggleX} />
