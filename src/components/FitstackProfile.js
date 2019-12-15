@@ -232,124 +232,36 @@ export default class FitstackProfile extends Component {
     }
 
     return (
-      <div>
-        <Joyride
-          callback={this.handleJoyrideCallback}
-          continuous={true}
-          getHelpers={this.getHelpers}
-          run={run}
-          scrollToFirstStep={true}
-          showProgress={true}
-          showSkipButton={true}
-          stepIndex={stepIndex}
-          steps={steps}
-          styles={{
-            options: {
-              zIndex: 10000
-            }
-          }}
-        />
-        <div id="crypto-container">
-          <div className="panel-landing" id="crypto">
-            <div className="dash-header">
-              <img className="dash-logo" src={logo} />
-              <span className="dash-header-text">Weight Tracker</span>
+      <div class="align-center">
+
+    <h1 class="heading">Brainymo</h1>
+    <p class="desc">Frontend Arsenal Memory Game</p>
+
+    <button class="btn" id="btn-start">
+        Start
+    </button>
+
+    <div class="cards-container">
+        <div class="flip-container hide" id="card-template">
+            <div class="flipper">
+                <div class="front">
+                    <label>frontend technologies</label>
+                </div>
+                <div class="back">
+                    <label></label>
+                </div>
             </div>
-            <div className="dash-chart">
-              <LineChart
-                legend={false}
-                min={0}
-                max={data['max']}
-                data={data['data']}
-                messages={{ empty: "Enter your first data point below!" }}
-                ytitle={units}
-                xtitle="Date"
-              />
-            </div>
-
-            {/* Show existing data if present */}
-            {weightLogs && weightLogs.length > 0 && (
-              <div id="weights">
-                <table className="table dash-table">
-                  <thead className="thead-dark">
-                    <tr>
-                      <th>Weight</th>
-                      <th>Date</th>
-                      <th>Units</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {weightLogs.map((row, i) => {
-                      return <tr key={i}>
-                        <td>{row.weight}</td>
-                        <td>{row.date}</td>
-                        <td>{row.units}</td>
-                      </tr>
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            )}
-
-            <hr />
-
-            <p className="dash-add-prompt">-<br/>Add a new weight recording:</p>
-            <table className="weight-table dash-entry">
-              <tbody id="weight-body">
-                <tr>
-                  <td>
-                    <div className="input-group mb-3">
-                    <Form.Control 
-                      value={inputWeight}
-                      onChange={this.handleChange} 
-                      name='inputWeight' 
-                      type="number" 
-                      placeholder="Enter weight" 
-                    />
-                    </div>
-                  </td>
-                  <td>
-                    <div className="input-group mb-3">
-                      <DatePicker
-                        className="date-picker"
-                        placeholderText="Enter date"
-                        selected={inputDate}
-                        onChange={this.handleDateChange}
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <div className="input-group input-units-group mb-3">
-                      <Form.Group controlId="exampleForm.ControlSelect1">
-                        <Form.Control
-                          as="select"
-                          name="inputUnits"
-                          value={inputUnits}
-                          componentClass="select"
-                          onChange={this.handleChange}>
-                          <option>lb</option>
-                          <option>kg</option>
-                        </Form.Control>
-                      </Form.Group>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            
-          </div>
         </div>
-        <div id="deleteWeights">
-          <div className="btn btn-primary dash-add" id="save-weight" onClick={this.saveWeight}>
-            Add weight log
-          </div>
-          &nbsp;
-          <div className="btn btn-primary dash-delete" id="delete-button" onClick={this.deleteList}>
-            Delete all
-          </div>
+    </div>
+
+    <div class="timer">
+        <label id="minutes"></label>:
+        <label id="seconds"></label>
+        <div class="time">
+            MY BEST TIME: <span id="bestTime"></span>
         </div>
-      </div>
+    </div>
+</div>
     )
   }
 }
