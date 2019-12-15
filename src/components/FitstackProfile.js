@@ -17,6 +17,201 @@ const PUT_OPTIONS = {
   encrypt: true
 }
 
+function Square(props) {
+  return (
+      <button className="square" onClick={props.onClick}>
+          {props.value}
+      </button>
+  );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+          return squares[a];
+      }
+  }
+  return null;
+}
+
+class Board extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          move: 0,
+          squares: Array(9).fill(null),
+          squaresHistory: Array(9).fill(null),
+          xIsNext: true,
+      };
+  }
+
+  handleClick(i) {
+      const squares = this.state.squares.slice();
+      const squaresHistory = this.state.squaresHistory.slice();
+
+      if (calculateWinner(squares) || squares[i]) {
+          return;
+      }
+
+      let x = 'X';
+      let o = 'O';
+
+      let move = this.state.move;
+      squaresHistory[move] = this.state.squares;
+      move++;
+      squares[i] = this.state.xIsNext ? x : o;
+
+      this.setState({
+          move: move,
+          squares: squares,
+          squaresHistory: squaresHistory,
+          xIsNext: !this.state.xIsNext,
+      });
+
+      this.props.onToggleX(this.state.xIsNext);
+  }
+
+  handleUndo() {
+      let move = this.state.move;
+
+      const squaresHistory = this.state.squaresHistory.slice();
+      squaresHistory[move] = this.state.squares;
+
+      --move;
+      this.setState({
+          move: move,
+          squares: this.state.squaresHistory[move],
+          squaresHistory: squaresHistory,
+          xIsNext: !this.state.xIsNext,
+      });
+
+      this.props.onToggleX(this.state.xIsNext);
+  }
+
+  handleRedo() {
+      let move = this.state.move;
+      move++;
+      this.setState({
+          move: move,
+          squares: this.state.squaresHistory[move],
+          xIsNext: !this.state.xIsNext,
+      });
+
+      this.props.onToggleX(this.state.xIsNext);
+  }
+
+  handleNewGame() {
+      this.setState({
+          move: 0,
+          squares: Array(9).fill(null),
+          squaresHistory: Array(9).fill(null),
+          xIsNext: true,
+      });
+
+      this.props.onToggleX(this.state.xIsNext);
+  }
+
+  renderSquare(i) {
+      return (
+          <Square
+              extraClass={this.state.xIsNext ? 'revert' : ''}
+              value={this.state.squares[i]}
+              onClick={() => this.handleClick(i)}
+          />
+      );
+  }
+
+  render() {
+      const winner = calculateWinner(this.state.squares);
+      let status;
+      if (winner) {
+          status = 'Winner: ' + winner;
+      } else {
+          status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      }
+      return (
+          <div>
+              <div className="status">{status}</div>
+              <div className="board-row">
+                  {this.renderSquare(0)}
+                  {this.renderSquare(1)}
+                  {this.renderSquare(2)}
+              </div>
+              <div className="board-row">
+                  {this.renderSquare(3)}
+                  {this.renderSquare(4)}
+                  {this.renderSquare(5)}
+              </div>
+              <div className="board-row">
+                  {this.renderSquare(6)}
+                  {this.renderSquare(7)}
+                  {this.renderSquare(8)}
+              </div>
+              <div className="icons">
+                  <button
+                      data-tip="Undo"
+                      className="function-button"
+                      disabled={this.state.move === 0}
+                      onClick={() => this.handleUndo()}>
+                      <FontAwesomeIcon icon={faUndo} size="4x" />
+                  </button>
+                  <ReactTooltip place="bottom" type="info" effect="float" />
+                  <button
+                      data-tip="Redo"
+                      className="function-button"
+                      disabled={this.state.squaresHistory[this.state.move + 1] === null}
+                      onClick={() => this.handleRedo()}>
+                      <FontAwesomeIcon icon={faRedo} size="4x" />
+                  </button>
+                  <ReactTooltip place="bottom" type="info" effect="float" />
+                  <button
+                      data-tip="New Game"
+                      className="function-button"
+                      onClick={() => this.handleNewGame()}>
+                      <FontAwesomeIcon icon={faFile} size="4x" />
+                  </button>
+                  <ReactTooltip place="bottom" type="warning" effect="float" />
+              </div>
+          </div>
+      );
+  }
+}
+
+class Game extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+          classes: 'game',
+      };
+  }
+
+  onToggleX = x => {
+      this.setState({
+          classes: x ? 'revert game' : 'game',
+      });
+  };
+  render() {
+      return (
+          <div className={this.state.classes}>
+              <div className="game-board">
+                  <Board onToggleX={this.onToggleX} />
+              </div>
+          </div>
+      );
+  }
+}
+
 export default class FitstackProfile extends Component {
   state = {
     weightLogs: [],
@@ -188,9 +383,7 @@ export default class FitstackProfile extends Component {
     console.groupEnd()
   }
 
-  generateCardSet(cards) {
-    alert('todo: generate cards');
-  }
+  
 
   render() {
     const { profile } = this.props
@@ -198,107 +391,11 @@ export default class FitstackProfile extends Component {
 
     let data = []
     let units = ""
-    
-    const config = {
-      cards: [
-          {
-              backImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSexUDniZ8qYHFpbK4Xyjd4Vs_Fx60Zwe7_5INiYN5H5dNNWiJZ',
-              connectionID: 1
-          },
-          {
-              backTxt: 'GRUNT',
-              connectionID: 1
-          },
-          {
-              backImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS13Kjh3SeT8Fmcy73l5FKRiH8Tcq9w9SIAddixX-XHwODxe5C',
-              connectionID: 2
-          },
-          {
-              backTxt: 'REACT',
-              connectionID: 2
-          },
-          {
-              backImg: 'https://gravatar.com/avatar/5a224f121f96bd037bf6c1c1e2b686fb?s=512&d=https://codepen.io/assets/avatars/user-avatar-512x512-6e240cf350d2f1cc07c2bed234c3a3bb5f1b237023c204c782622e80d6b212ba.png',
-              connectionID: 3
-          },
-          {
-              backTxt: 'GSAP',
-              connectionID: 3
-          },
-          {
-              backImg: 'http://richardgmartin.me/wp-content/uploads/2014/11/ember-mascot.jpeg',
-              connectionID: 4
-          },
-          {
-              backTxt: 'EMBER',
-              connectionID: 4
-          },
-          {
-              backImg: 'https://odoruinu.files.wordpress.com/2014/11/3284117.png',
-              connectionID: 5
-          },
-          {
-              backTxt: 'KARMA', 
-              connectionID: 5
-          },
-          {
-              backImg: 'https://cdn.auth0.com/blog/webpack/logo.png',
-              connectionID: 6
-          },
-          {
-              backTxt: 'WEBPACK',
-              connectionID: 6
-          },
-          {
-              backImg: 'https://res.cloudinary.com/teepublic/image/private/s--JnfxjOP1--/t_Resized%20Artwork/c_fit,g_north_west,h_1054,w_1054/co_ffffff,e_outline:53/co_ffffff,e_outline:inner_fill:53/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_jpg,h_630,q_90,w_630/v1509564403/production/designs/2016815_1.jpg',
-              connectionID: 7
-          },
-          {
-              backTxt: 'ANGULAR',
-              connectionID: 7
-          },
-          {
-              backImg: 'https://smyl.es/wurdp/assets/mongodb.png',
-              connectionID: 8
-          },
-          {
-              backTxt: 'MONGO DB',
-              connectionID: 8
-          },
-      ]
-  };
 
     return (
-      <div class="align-center">
-
-    <h1 class="heading">Brainymo</h1>
-    <p class="desc">Frontend Arsenal Memory Game</p>
-
-    <button class="btn" id="btn-start" onClick={this.generateCardSet}>
-        Start
-    </button>
-
-    <div class="cards-container">
-        <div class="flip-container hide" id="card-template">
-            <div class="flipper">
-                <div class="front">
-                    <label>frontend technologies</label>
-                </div>
-                <div class="back">
-                    <label></label>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="timer">
-        <label id="minutes"></label>:
-        <label id="seconds"></label>
-        <div class="time">
-            MY BEST TIME: <span id="bestTime"></span>
-        </div>
-    </div>
-</div>
+      <Game />
     )
   }
 }
+
+
