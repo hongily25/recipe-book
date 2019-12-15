@@ -200,9 +200,9 @@ class Game extends React.Component {
 
   showRecipe() {
     // TODO: 
-    const number = Math.floor(Math.random() * 1000);
+    const number = Math.floor(Math.random() * 100);
     const url = 'https://www.allrecipes.com/recipes/' + number;
-    document.getElementById('recipe').innerHTML = '<a href="'+ url + '">Recipe</a>';
+    document.getElementById('recipe').innerHTML = '<a target="_blank" href="'+ url + '">Recipe</a>';
   }
 
   render() {
