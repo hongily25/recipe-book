@@ -199,17 +199,22 @@ class Game extends React.Component {
   };
 
   showRecipe() {
-    document.getElementById('recipe').innerHTML = 'Some recipe';
+    // TODO: 
+    const number = Math.floor(Math.random() * 1000);
+    const url = 'https://www.allrecipes.com/recipes/' + number;
+    document.getElementById('recipe').innerHTML = '<a href="'+ url + '">Recipe</a>';
   }
 
   render() {
       return (
-          <div className={this.state.classes}>
-              <div id="recipe"></div>
-             <div class="btn" onClick={this.showRecipe}></div> 
-              <div className="game-board">
-                  <Board onToggleX={this.onToggleX} />
-              </div>
+          <div>
+            <div id="recipe"></div>
+             <div class="btn" onClick={this.showRecipe}>Get a recipe</div> 
+            <div className={this.state.classes}>
+                <div className="game-board">
+                    <Board onToggleX={this.onToggleX} />
+                </div>
+            </div>
           </div>
       );
   }
