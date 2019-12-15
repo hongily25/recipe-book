@@ -65,7 +65,7 @@ export default class Home extends Component {
           <div className="site-wrapper-inner" id="site-wrapper-inner">
             <div className="panel-landing" id="section-1">
               {/* <h1 className="landing-heading">Fitness Stack</h1> */}
-              <img className='landing-logo' src={logo}/>
+              <h1>Recipe Book</h1>
               <p className="lead">
                 <a
                   href="#"
@@ -78,8 +78,7 @@ export default class Home extends Component {
               </p>
             </div>
             {!profile && <div>
-              <img src="https://i.giphy.com/media/26BRq9PYFLeJl3WLu/giphy.webp" />
-              <p className='landing-slogan-text'>Share and record your weight loss progress, backed by <a href="https://blockstack.org" target="_blank">Blockstack</a> decentralized storage.</p>
+              <p className='landing-slogan-text'>Play Tic Tac Toe and get recipes. Backed by <a href="https://blockstack.org" target="_blank">Blockstack</a> decentralized storage.</p>
             </div>}
             <div>
               {profile && <FitstackProfile profile={profile} userSession={userSession}/>}
