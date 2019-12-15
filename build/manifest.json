@@ -1,6 +1,6 @@
 {
-  "short_name": "Fitness Stack",
-  "name": "Fitness Stack weight tracker",
+  "short_name": "Recipe Book",
+  "name": "Recipe Book",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,7 +8,7 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "https://fitstack.space",
+  "start_url": "https://recipe-book.page",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

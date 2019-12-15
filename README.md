@@ -1,7 +1,8 @@
-Fitness Stack
+Recipe Book
+
 ---
 
-Track your fitness goals on decentralized and encrypted storage powered by Blockstack.
+Play Tic Tac Toe and get a recipe.
 
 ### Running locally
 <pre>

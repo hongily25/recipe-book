@@ -65,7 +65,7 @@ export default class Home extends Component {
           <div className="site-wrapper-inner" id="site-wrapper-inner">
             <div className="panel-landing" id="section-1">
               {/* <h1 className="landing-heading">Fitness Stack</h1> */}
-              <h1>Recipe Book</h1>
+              <h1 className="landing-heading">Recipe Book</h1>
               <p className="lead">
                 <a
                   href="#"
