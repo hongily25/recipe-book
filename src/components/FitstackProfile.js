@@ -201,8 +201,12 @@ class Game extends React.Component {
 
   showRecipe() {
     // TODO: 
-    const number = Math.floor(Math.random() * 100);
-    const url = 'https://www.allrecipes.com/recipes/' + number;
+    const recipes = [
+      'https://www.allrecipes.com/recipe/10602/no-bake-chocolate-oat-bars',
+      'https://www.allrecipes.com/recipe/23915/beef-tips-and-noodles'
+    ]
+    const number = Math.floor(Math.random());
+    const url = recipes[number];
     document.getElementById('recipe').innerHTML = '<a target="_blank" href="'+ url + '">Recipe</a>';
   }
 
