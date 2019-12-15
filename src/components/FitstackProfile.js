@@ -204,12 +204,9 @@ class Game extends React.Component {
 
   render() {
       return (
-          <div>
-            <div id="recipe"></div>
-            <div class="btn" onClick={this.showRecipe}></div>          
-          </div>
-
           <div className={this.state.classes}>
+              <div id="recipe"></div>
+             <div class="btn" onClick={this.showRecipe}></div> 
               <div className="game-board">
                   <Board onToggleX={this.onToggleX} />
               </div>
