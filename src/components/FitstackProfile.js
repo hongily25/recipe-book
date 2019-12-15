@@ -188,48 +188,85 @@ export default class FitstackProfile extends Component {
     console.groupEnd()
   }
 
+  generateCardSet(cards) {
+    alert('todo: generate cards');
+  }
+
   render() {
     const { profile } = this.props
     let { weightLogs, run, stepIndex, inputDate, inputWeight, inputUnits, steps } = this.state
-    weightLogs = weightLogs.map(log => {
-      log.date = (new Date(log.date)).toISOString().split('T')[0]
-      return log
-    })
 
     let data = []
     let units = ""
-    if (weightLogs && weightLogs.length > 0) {
-      let points = []
-      let max = 0
-
-      units = weightLogs[0]["units"]
-
-      weightLogs.forEach(log => {
-        let w = log.weight
-        const d = log.date
-        const u = log.units
-        if (u != units) {
-          if (u === 'kg') {
-            w *= 2.2
-          } else if (u === 'lb') {
-            w /= 2.2 
-          }
-        }
-        w = parseInt(w)
-        if (w && d) {
-          points.push([d, w])
-          max = Math.max(max, w)
-        }
-      })
-
-
-
-      data = {
-        name: `Weight (${units})`,
-        data: points,
-        max: max
-      }
-    }
+    
+    const config = {
+      cards: [
+          {
+              backImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSexUDniZ8qYHFpbK4Xyjd4Vs_Fx60Zwe7_5INiYN5H5dNNWiJZ',
+              connectionID: 1
+          },
+          {
+              backTxt: 'GRUNT',
+              connectionID: 1
+          },
+          {
+              backImg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS13Kjh3SeT8Fmcy73l5FKRiH8Tcq9w9SIAddixX-XHwODxe5C',
+              connectionID: 2
+          },
+          {
+              backTxt: 'REACT',
+              connectionID: 2
+          },
+          {
+              backImg: 'https://gravatar.com/avatar/5a224f121f96bd037bf6c1c1e2b686fb?s=512&d=https://codepen.io/assets/avatars/user-avatar-512x512-6e240cf350d2f1cc07c2bed234c3a3bb5f1b237023c204c782622e80d6b212ba.png',
+              connectionID: 3
+          },
+          {
+              backTxt: 'GSAP',
+              connectionID: 3
+          },
+          {
+              backImg: 'http://richardgmartin.me/wp-content/uploads/2014/11/ember-mascot.jpeg',
+              connectionID: 4
+          },
+          {
+              backTxt: 'EMBER',
+              connectionID: 4
+          },
+          {
+              backImg: 'https://odoruinu.files.wordpress.com/2014/11/3284117.png',
+              connectionID: 5
+          },
+          {
+              backTxt: 'KARMA', 
+              connectionID: 5
+          },
+          {
+              backImg: 'https://cdn.auth0.com/blog/webpack/logo.png',
+              connectionID: 6
+          },
+          {
+              backTxt: 'WEBPACK',
+              connectionID: 6
+          },
+          {
+              backImg: 'https://res.cloudinary.com/teepublic/image/private/s--JnfxjOP1--/t_Resized%20Artwork/c_fit,g_north_west,h_1054,w_1054/co_ffffff,e_outline:53/co_ffffff,e_outline:inner_fill:53/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_jpg,h_630,q_90,w_630/v1509564403/production/designs/2016815_1.jpg',
+              connectionID: 7
+          },
+          {
+              backTxt: 'ANGULAR',
+              connectionID: 7
+          },
+          {
+              backImg: 'https://smyl.es/wurdp/assets/mongodb.png',
+              connectionID: 8
+          },
+          {
+              backTxt: 'MONGO DB',
+              connectionID: 8
+          },
+      ]
+  };
 
     return (
       <div class="align-center">
@@ -237,7 +274,7 @@ export default class FitstackProfile extends Component {
     <h1 class="heading">Brainymo</h1>
     <p class="desc">Frontend Arsenal Memory Game</p>
 
-    <button class="btn" id="btn-start">
+    <button class="btn" id="btn-start" onClick={this.generateCardSet}>
         Start
     </button>
 

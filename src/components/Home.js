@@ -30,6 +30,8 @@ export default class Home extends Component {
     document.getElementById("section-1").style.display = "none"
     document.getElementById("section-2").style.display = "block"
     document.getElementById("site-wrapper-inner").style.verticalAlign = "top"
+
+    
   }
 
   signin(event) {
