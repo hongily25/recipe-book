@@ -133,7 +133,7 @@ class Board extends React.Component {
       let status;
       if (winner) {
           status = 'Winner: ' + winner;
-          document.getElementById('recipeBtn').style = 'block';
+          document.getElementById('recipeBtn').style.display = 'block';
       } else {
           status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
       }
