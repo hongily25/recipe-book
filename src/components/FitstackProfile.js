@@ -207,7 +207,8 @@ class Game extends React.Component {
     ]
     const number = Math.floor(Math.random());
     const url = recipes[number];
-    document.getElementById('recipe').innerHTML = '<a target="_blank" href="'+ url + '">Recipe</a>';
+    window.location = url;
+    
   }
 
   render() {
