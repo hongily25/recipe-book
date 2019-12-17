@@ -218,7 +218,7 @@ class Game extends React.Component {
       'https://www.allrecipes.com/recipe/275817/lasagna-noodle-soup/',
       'https://www.allrecipes.com/recipe/10502/bunuelos/',
     ]
-    const number = Math.floor(Math.random());
+    const number = Math.floor(Math.random() * 14);
     const url = recipes[number];
     window.location = url;
     
