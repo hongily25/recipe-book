@@ -73,3 +73,7 @@ ol, ul {
 .revert .function-button {
     transition: all 0.5s ease;
 }
+
+.revert.game {
+    margin-bottom: 5em;
+}
