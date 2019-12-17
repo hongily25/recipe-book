@@ -204,7 +204,19 @@ class Game extends React.Component {
     // TODO: 
     const recipes = [
       'https://www.allrecipes.com/recipe/10602/no-bake-chocolate-oat-bars',
-      'https://www.allrecipes.com/recipe/23915/beef-tips-and-noodles'
+      'https://www.allrecipes.com/recipe/23915/beef-tips-and-noodles',
+      'https://www.allrecipes.com/recipe/235158/worlds-best-honey-garlic-pork-chops/',
+      'https://www.allrecipes.com/recipe/219077/chef-johns-perfect-mashed-potatoes',
+      'https://www.allrecipes.com/recipe/94725/savannah-seafood-stuffing',
+      'https://www.allrecipes.com/recipe/241287/baked-italian-chicken-dinner/',
+      'https://www.allrecipes.com/recipe/263061/sheet-pan-harissa-chicken-dinner/',
+      'https://www.allrecipes.com/recipe/219208/roasted-loin-of-pork-with-pan-gravy/',
+      'https://www.allrecipes.com/recipe/247371/pork-loin-roast-with-baby-bellas',
+      'https://www.allrecipes.com/recipe/172704/chinese-pepper-steak',
+      'https://www.allrecipes.com/recipe/86407/kikkoman-chinese-pepper-steak',
+      'https://www.allrecipes.com/recipe/86404/quick-chinese-chicken-salad',
+      'https://www.allrecipes.com/recipe/275817/lasagna-noodle-soup/',
+      'https://www.allrecipes.com/recipe/10502/bunuelos/',
     ]
     const number = Math.floor(Math.random());
     const url = recipes[number];
@@ -216,7 +228,7 @@ class Game extends React.Component {
       return (
           <div>
             <div id="recipe"></div>
-             <div id="recipeBtn" class="btn" onClick={this.showRecipe}><img src={yay}/><h2>Get a recipe</h2><img src={yay}/></div> 
+             <div id="recipeBtn" class="btn" onClick={this.showRecipe}><h2><img src={yay}/>Get a recipe<img src={yay}/></h2></div> 
             <div className={this.state.classes}>
                 <div className="game-board">
                     <Board onToggleX={this.onToggleX} />
