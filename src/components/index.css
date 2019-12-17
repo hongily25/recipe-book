@@ -36,8 +36,8 @@ ol, ul {
     transition: all 0.5s ease;
 }
 .function-button {
-    background: #fff;
-    color: #000;
+    background: #dfe1e4;
+    color: #270F34;
     padding: 0;
     border: none;
     transition: all 0.5s ease;
@@ -64,18 +64,18 @@ ol, ul {
     height: 100%;
 }
 .revert {
-    background-color: #000;
+    background-color: #270F34;
     color: #FFF;
     transition: all 0.5s ease;
 }
 .revert .square {
     border: 1px solid #FFF;
-    background-color: black;
+    background-color: #270F34;
     color: #FFF;
     transition: all 0.5s ease;
 }
 .revert .function-button {
-    background: #000;
+    background: #270F34;
     color: #fff;
     transition: all 0.5s ease;
 }
