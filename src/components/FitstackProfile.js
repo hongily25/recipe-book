@@ -11,6 +11,7 @@ import './index.css';
 
 import "react-datepicker/dist/react-datepicker.css"
 import logo from "./../assets/fit_logo.png"
+import yay from "./../assets/yay.png"
 import "chart.js"
 
 function Square(props) {
@@ -215,7 +216,7 @@ class Game extends React.Component {
       return (
           <div>
             <div id="recipe"></div>
-             <div id="recipeBtn" class="btn" onClick={this.showRecipe}><h2>Get a recipe</h2></div> 
+             <div id="recipeBtn" class="btn" onClick={this.showRecipe}><img src={yay}/><h2>Get a recipe</h2><img src={yay}/></div> 
             <div className={this.state.classes}>
                 <div className="game-board">
                     <Board onToggleX={this.onToggleX} />
