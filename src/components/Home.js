@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import * as blockstack from "blockstack"
 import FitstackProfile from "./FitstackProfile";
 
-import logo from './../assets/recipe-book.png'
+import logo from './../assets/recipe-book-long.png'
 
 const appConfig = new blockstack.AppConfig(['store_write', 'publish_data','email'])
 const userSession = new blockstack.UserSession({ appConfig })
@@ -66,7 +66,6 @@ export default class Home extends Component {
             <div className="panel-landing" id="section-1">
               {/* <h1 className="landing-heading">Fitness Stack</h1> */}
               <img className='landing-logo' src={logo}/>
-              <h1 className="landing-heading">Recipe Book</h1>
               <p className="lead">
                 <a
                   href="#"
